@@ -1,36 +1,25 @@
-#include<bits/stdc++.h>
-using namespace std;
-int main(){
-    
-    cin.ignore();
-    string s;
-    getline(cin,s);
-    
-vector<char>ans;
+bool isNumeric(char s){
+    if(s=='0'||s=='1'||s=='2'||s=='3'||s=='4'||s=='5'||s=='6'||s=='7'||s=='8'||s=='9'||s=='10'){
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        vector<char>ans;
         for(int i=0 ; i<s.size() ; i++){
-            if(isalpha(s[i])){
+            if(isalpha(s[i])||isNumeric(s[i])){
                 ans.push_back(tolower(s[i]));
             }
         }
-        for(int i=0 ; i<ans.size() ; i++){
-            cout<<ans[i];
-        }
-        cout<<endl;
-        queue<char>q;
-        int temp=ans.size()/2;
-        for(int i=0 ; i<ans.size()/2 ; i++){
-            q.push(ans[i]);
-        }
-        for(int i=(ans.size()/2)+1 ; i<ans.size() ; i++){
-            if(ans[i]==q.front()){
-                q.pop();
+        for(int i=0,k=ans.size()-1 ; i<=k ; i++,k--){
+            if(ans[i]!=ans[k]){
+                return false;
             }
         }
-        cout<<q.size()<<endl;
-        if(q.size()){
-            cout<<"false"<<endl;
-        } else {
-            cout<<"true"<<endl;
-        }
-        return 0;
-}
+        return true;
+    }
+};
